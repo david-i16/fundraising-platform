@@ -5,6 +5,7 @@ contract CrowdFunding {
     struct Campaign {
         address owner;
         string title;
+        string category;
         string description;
         uint256 target;
         uint256 deadline;
@@ -20,7 +21,7 @@ contract CrowdFunding {
 
     //_ is used for specifying that the param is only for the specified function in which is used as param
     //memory type = short-lived storage area that is used during contract execution; Memory variables are only valid for the duration of a function call and are deleted when the call ends.
-    function createCampaign(address _owner, string memory _title, string memory _description, uint256 _target, uint256 _deadline, string memory _image) public returns (uint256) { //returns the id/index of the created campaign
+    function createCampaign(address _owner, string memory _title, string memory _category, string memory _description, uint256 _target, uint256 _deadline, string memory _image) public returns (uint256) { //returns the id/index of the created campaign
         Campaign storage campaign = campaigns[numberOfCampaigns]; //each execution of the Smart contract has access to the data previously stored on the storage area
 
         //require statement = like a test, checks for some validation
@@ -28,6 +29,7 @@ contract CrowdFunding {
 
         campaign.owner = _owner;
         campaign.title = _title;
+        campaign.category = _category;
         campaign.description = _description;
         campaign.target = _target;
         campaign.deadline = _deadline;

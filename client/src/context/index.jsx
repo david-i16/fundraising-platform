@@ -5,7 +5,7 @@ import { ethers } from 'ethers';
 const StateContext = createContext();
 
 export const StateContextProvider = ({ children }) => {
-    const { contract } = useContract("0x79218C87C966d1DfBC29EA60Eb22C4f3D0f9FcEe");
+    const { contract } = useContract("0xF31466a7671B346c84f7eA1D941237B14CbFD333");
     const { mutateAsync: createCampaign } = useContractWrite(contract, "createCampaign");
     const address = useAddress();
     const connect = useMetamask();
@@ -17,6 +17,7 @@ export const StateContextProvider = ({ children }) => {
 				args: [
 					address, // campaign owner
 					form.title, 
+                    form.category,
 					form.description, 
 					form.target,
 					new Date(form.deadline).getTime(), 
@@ -32,6 +33,32 @@ export const StateContextProvider = ({ children }) => {
 
     }
 
+    const getCampaigns = async () => {
+        const campaigns = await contract.call('getCampaigns');
+
+        const parsedCampaigns = campaigns.map((campaign, i) => ({
+            owner: campaign.owner,
+            title: campaign.title,
+            category: campaign.category,
+            description: campaign.description,
+            target: ethers.utils.formatEther(campaign.target.toString()),
+            deadline: campaign.deadline.toNumber(),
+            amountCollected: ethers.utils.formatEther(campaign.amountCollected.toString()),
+            image: campaign.image,
+            pId: i
+        }));
+
+        return parsedCampaigns;
+    }
+
+    const getUserCampaigns = async () => {
+        const allCampaigns = await getCampaigns();
+
+        const filteredCampaigns = allCampaigns.filter((campaign) => campaign.owner === address);
+
+        return filteredCampaigns;
+    }
+
     return (
         <StateContext.Provider
             value={{
@@ -39,6 +66,8 @@ export const StateContextProvider = ({ children }) => {
                 contract,
                 connect,
                 createCampaign : publishCampaign,
+                getCampaigns,
+                getUserCampaigns
             }}
         >
             {children}
