@@ -6,6 +6,7 @@ import { CustomButton } from '../components';
 import { FormField } from '../components';
 import { checkIfImage } from '../utils';
 import { useStateContext } from '../context';
+import '../assets/money_style.css';
 
 const CreateCampaign = () => {
   const navigate = useNavigate();
@@ -86,9 +87,9 @@ const CreateCampaign = () => {
           handleChange = {(e) => handleFormFieldChange('description', e)}
         />
 
-        <div className="w-full flex justify-start items-center p-4 bg-[#8c6dfd] h-[120px] rounded-[10px]">
-          <img src={money} alt="money" className="w-[40px] h-[40px] object-contain"/>
-          <h4 className="font-epilogue font-bold text-[25px] text-white ml-[20px]">You will get 100% of the raised amount</h4>
+        <div className="w-full flex justify-start items-center p-4 bg-[#FFCB9A] h-[120px] rounded-[10px]">
+          <img src={money} alt="money" className="w-[40px] h-[40px] object-contain invert-color"/>
+          <h4 className="font-epilogue font-bold text-[25px] text-black ml-[20px]">You will get 100% of the raised amount</h4>
         </div>
 
         <div className="flex flex-wrap gap-[40px]">
@@ -120,7 +121,7 @@ const CreateCampaign = () => {
           <CustomButton
             btnType="submit"
             title="Submit new campaign"
-            styles="bg-[#1dc071]"
+            styles="bg-[#FFCB9A] text-black"
           />
         </div>
 
