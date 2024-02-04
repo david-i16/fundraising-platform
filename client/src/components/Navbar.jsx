@@ -20,7 +20,16 @@ const Navbar = () => {
         </div>
       </div>
 
+      
       <div className="sm:flex hidden flex-row justify-end gap-4">
+        <a href="https://www.coinbase.com/home" target="_blank" rel="noopener noreferrer">
+          <CustomButton 
+            btnType="button"
+            title='Coinbase'
+            styles='bg-[#1a50f0] text-white'
+          />
+        </a>
+        
         <CustomButton 
           btnType="button"
           title={address ? 'Create a campaign' : 'Connect'}

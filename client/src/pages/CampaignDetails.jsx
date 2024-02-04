@@ -37,6 +37,9 @@ const CampaignDetails = () => {
     <div>
       {isLoading && <Loader />}
 
+      <div className="mt-[80px]">
+        <p className="font-epilogue font-bold text-[25px] text-black leading-[26px] text-justify uppercase">{ state.title }</p>
+      </div>
       <div className="w-full flex md:flex-row flex-col mt-10 gap-[30px]">
         <div className="flex-1 flex-col">
           <img src={state.image} alt="campaign" className="w-full h-[500px] object-cover rounded-xl"/>
@@ -50,6 +53,15 @@ const CampaignDetails = () => {
           <CountBox title="Days Left" value={remainingDays} />
           <CountBox title={`Raised of ${state.target} ETH`} value={state.amountCollected} />
           <CountBox title="Total Backers" value={donators.length} />
+        </div>
+      </div>
+
+      <div className="mt-[20px] flex flex-col gap-4">
+        <div className="flex justify-between items-center gap-4">
+          <p className="font-epilogue font-semibold text-[25px] text-black leading-[26px] text-justify uppercase">{ `${calculateBarPercentage(state.target, state.amountCollected)}%` }</p>
+          <div className="mr-[180px]">
+          <p className="font-epilogue font-normal text-[19px] text-black leading-[26px] text-justify">{ `${state.amountCollected * 2300}$ collected of ${state.target * 2300}$ target` }</p>
+          </div>
         </div>
       </div>
 
