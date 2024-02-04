@@ -5,8 +5,15 @@ import { CampaignDetails, CreateCampaign, Home, Profile } from './pages';
 
 const App = () => {
   return (
-    <div className="relative sm:-8 p-4 bg-[#13131a] min-h-screen flex flex-row"> 
-      {/* #13131a = background color */}
+    <div className="relative sm:-8 p-4 bg-[#D1E8E2] min-h-screen flex flex-row"> 
+      {/* #13131a = dark background color 
+      color map:
+      #D1E8E2 = white + mint
+      #2C3531 = some kind of black
+      #D9B08C = beige
+      #FFCB9A = creme
+      #116466 = dark green + blue
+      */}
       <div className="sm:flex hidden mr-10 relative">
         <Sidebar />
       </div>
