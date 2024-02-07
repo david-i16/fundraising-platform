@@ -60,7 +60,7 @@ const CampaignDetails = () => {
         <div className="flex justify-between items-center gap-4">
           <p className="font-epilogue font-semibold text-[25px] text-black leading-[26px] text-justify uppercase">{ `${calculateBarPercentage(state.target, state.amountCollected)}%` }</p>
           <div className="mr-[180px]">
-          <p className="font-epilogue font-normal text-[19px] text-black leading-[26px] text-justify">{ `${state.amountCollected * 2300}$ collected of ${state.target * 2300}$ target` }</p>
+          <p className="font-epilogue font-normal text-[19px] text-black leading-[26px] text-justify">{ `${state.amountCollected * 2300}$ collected of ${Math.round(state.target * 2300)}$ target` }</p>
           </div>
         </div>
       </div>
